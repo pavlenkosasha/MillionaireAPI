@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Uber Trip Prediction</title>
+</head>
+
+<body>
+
+    <h1>Прогноз кількості поїздок Uber</h1>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <label>Година:</label>
+        <input
+            type="number"
+            name="hour"
+            min="0"
+            max="23"
+            required
+        >
+
+        <br><br>
+
+        <label>День місяця:</label>
+        <input
+            type="number"
+            name="day"
+            min="1"
+            max="31"
+            required
+        >
+
+        <br><br>
+
+        <label>День тижня:</label>
+
+        <select name="day_of_week" required>
+            <option value="Monday">Понеділок</option>
+            <option value="Tuesday">Вівторок</option>
+            <option value="Wednesday">Середа</option>
+            <option value="Thursday">Четвер</option>
+            <option value="Friday">П'ятниця</option>
+            <option value="Saturday">Субота</option>
+            <option value="Sunday">Неділя</option>
+        </select>
+
+        <br><br>
+
+        <button type="submit">
+            Зробити прогноз
+        </button>
+
+    </form>
+
+    {% if prediction is not None %}
+        <h2>
+            Прогноз: {{ prediction }} поїздок
+        </h2>
+    {% endif %}
+
+</body>
+</html>
